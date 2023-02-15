@@ -3,7 +3,7 @@
 int main(void)
 {
 	int square_matrix[3][3] = {0}, reverse_array[5] = {0}, traingular_array[4][4] = {0}, snail_array[10][10] = {0};
-	int i = 0, j = 0 , c = 1, counter_0 = 0, counter_n = 0, k = 1;
+	int i = 0, j = 0 , c = 1, counter_0 = 0, counter_n = 0, counter_c = 0, k = 1;
 	
 	//1
 	printf("\n1.square_matrix[3][3]\n");
@@ -43,14 +43,15 @@ int main(void)
 	scanf("%d",&c);
 	counter_0 = 0;
 	counter_n = c;
+	counter_c = c;
 	i = 0;
 	j = 0;
 
 	if(c == 1){
 		snail_array[0][0] = k;
 	}
-	else if(c % 2 > 0){
-		while(counter_n / 2 >1){
+	else if(c > 1){
+		while(counter_c >1){
 			i = counter_0;
 			j = counter_0;
 			while(j < counter_n){
@@ -59,6 +60,7 @@ int main(void)
 				j++;
 			}
 			j--;
+			i++;
 			while(i < counter_n){
 				snail_array[i][j] = k;
 				k++;
@@ -73,27 +75,26 @@ int main(void)
 			}
 			j++;
 			i--;
-			while(i > counter_0-1){
+			while(i > counter_0){
 				snail_array[i][j] = k;
 				k++;
 				i--;
 			}
 			++counter_0;
 			--counter_n;
+			counter_c-=2;
+
 		}
-		snail_array[c / 2 + 1][c / 2 + 1]=k;
-
-	}
-	else if(c % 2 == 0){
-
 	}
 
+	if (c % 2 != 0)
+		snail_array[c/2][c/2] = k;
 
 
 
 	for(i = 0; i < c; i++){
 		for (j = 0; j < c; j++){
-			printf("%2d ",snail_array[i][j]);
+			printf("%3d ",snail_array[i][j]);
 		}
 		printf("\n");
 	}
