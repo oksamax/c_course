@@ -3,7 +3,7 @@
 
 
 struct user_info {
-	char name[20];
+	char firstname[20];
 	char surname[20];
 	char number[15];
 };
@@ -15,7 +15,7 @@ int main(void)
 	char find_number[20] = "0", delete_name[20] = "0";
 
 	for (i = 0; i < 10; i++){
-		strcpy(user[i].name,"0");
+		strcpy(user[i].firstname,"0");
 		strcpy(user[i].surname,"0");
 		strcpy(user[i].number,"0");
 	}
@@ -27,7 +27,7 @@ int main(void)
 		if (item == 1){ //Add user
 			if(end_counter <=10){
 				printf("Enter name(20 characters):");
-				scanf("%s",user[start_counter].name);
+				scanf("%s",user[start_counter].firstname);
 				printf("Enter surname(20 characters):");
 				scanf("%s",user[start_counter].surname);
 				printf("Enter number(15 characters):");
@@ -35,50 +35,50 @@ int main(void)
 				start_counter++;
 				end_counter++;
 			}
-			else printf("telephone directory is full");
+			else printf("****** Telephone directory is full!");
 
 		}
 		else if (item == 2){ // Telephone directory
-			if (start_counter == 0) printf("telephone directory is empty");
+			if (start_counter == 0) printf("****** Telephone directory is empty!");
 			else{
 				for(i = 0; i < start_counter; i++){
-					printf("user:%s  surname:%s  number:%s\n",user[i].name, user[i].surname, user[i].number);
+					printf("****** %d. Firstname:%s  Surname:%s  Number:%s\n",i+1,user[i].firstname, user[i].surname, user[i].number);
 				}
 			}
 
 		}
 		else if (item == 3){ // Find user
-			if (start_counter == 0) printf("telephone directory is empty");
+			if (start_counter == 0) printf("****** Telephone directory is empty!");
 			else
 			{
 				printf("Enter user number:");
 				scanf("%s",find_number);
 				for(i = 0; i < start_counter; i++){
 				       if(!strcmp(find_number,user[0].number)){
-					       printf("user:%s  surname:%s  number:%s\n",user[i].name, user[i].surname, user[i].number);
+					       printf("****** firstname:%s  surname:%s  number:%s\n",user[i].firstname, user[i].surname, user[i].number);
 					       break;
 				       }
 				}
-				if (i == start_counter) printf("user isn't found!\n");
+				if (i == start_counter) printf("****** User isn't found!\n");
 				i = 0;
 			}
 
 		}
 		else if (item == 4){ //Delete user
-			if (start_counter == 0) printf("telephone directory is empty");
+			if (start_counter == 0) printf("****** Telephone directory is empty!");
 			else if (start_counter == 1)
 				{
 					printf("Enter user name:");
 					scanf("%s",delete_name);
-					if(strcmp(delete_name,user[0].name)){
+					if(strcmp(delete_name,user[0].firstname)){
 						start_counter = 0;
-						strcpy(user[0].name,"0");
+						strcpy(user[0].firstname,"0");
 						strcpy(user[0].surname,"0");
 						strcpy(user[0].number,"0");
 					}
 				}
 		}
-		else if (item !=5) printf("This item isn't on the menu!!!\n");
+		else if (item !=5) printf("****** This item isn't on the menu!!!\n");
 		puts("\n");
 	}while (item !=5);
 
