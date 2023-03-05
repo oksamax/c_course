@@ -84,18 +84,6 @@ int main(void)
 		}
 		else if (item == 4){ //Delete user
 			if (start_counter == 0) printf("****** Telephone directory is empty!");
-/*			else if (start_counter == 1){
-				printf("Enter user name:");
-				scanf("%s",delete_name);
-				if(!strcmp(delete_name,user[0].firstname)){
-					start_counter = 0;
-					printf("****** User \'%s\' deleted!\n",user[0].firstname);
-                                                strcpy(user[0].firstname,"0");
-                                                strcpy(user[0].surname,"0");
-                                                strcpy(user[0].number,"0");
-                                        }
-                                }
-			*/
 			else{
 				printf("Enter user firstname (20 characters):");
 				scanf("%s",delete_name);
@@ -115,15 +103,29 @@ int main(void)
 						i--;
 						delete_counter = 1;
 					}
-				if (delete_counter == 1) user = realloc(user, (start_counter + 1) * sizeof(struct user_info));
 				}
+				if ((delete_counter == 1) && (start_counter != 0)){
+					user = realloc(user, (start_counter + 1) * sizeof(struct user_info));
+					if(user == NULL){
+						printf("Dynamic memory not allocated!\n");
+						exit(EXIT_FAILURE);
+					}
+				}
+				else if(start_counter == 0){
+					free(user);
+					user = NULL;
+				}
+				else printf("The entered user isn't in the directory!\n");
 			}
                 }
 		else if (item !=5) printf("****** This item isn't on the menu!!!\n");
 		puts("\n");
 	}while (item !=5);
 
-	free(user);
+	if(user != NULL){
+		free(user);
+		user = NULL;
+	}
 
         return 0;
 }
