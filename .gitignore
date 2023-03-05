@@ -2,4 +2,5 @@ byte_output/byte_output
 2_array/array
 3_struct/test1
 3_struct/test2
-3_struct/telephone_directory 
+3_struct/telephone_directory
+4_dynamic_memory_tel_dir/dynamic_memory_telephone_directory 
