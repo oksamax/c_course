@@ -11,7 +11,7 @@ struct user_info {
 int main(void)
 {
 	struct user_info user[10];
-	int item = 0, start_counter = 0, end_counter = 0, i = 0;
+	int item = 0, start_counter = 0, end_counter = 0, i = 0, find_counter = 0;
 	char find_number[20] = "0", delete_name[20] = "0";
 
 	for (i = 0; i < 10; i++){
@@ -54,13 +54,14 @@ int main(void)
 				printf("Enter user number:");
 				scanf("%s",find_number);
 				for(i = 0; i < start_counter; i++){
-					printf("i=%d ",i);
 				       if(!strcmp(find_number,user[i].number)){
 					       printf("****** firstname:%s  surname:%s  number:%s\n",user[i].firstname, user[i].surname, user[i].number);
+				       find_counter = 1;
 				       }
 				}
-				if (i == start_counter) printf("****** User isn't found!\n");
+				if (find_counter == 0) printf("****** User isn't found!\n");
 				i = 0;
+				find_counter = 0;
 			}
 
 		}
